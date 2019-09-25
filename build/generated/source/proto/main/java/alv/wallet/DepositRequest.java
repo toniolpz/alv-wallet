@@ -16,7 +16,7 @@ private static final long serialVersionUID = 0L;
     super(builder);
   }
   private DepositRequest() {
-    currency_ = 0;
+    currency_ = "";
   }
 
   @java.lang.Override
@@ -59,10 +59,10 @@ private static final long serialVersionUID = 0L;
             amount_ = input.readDouble();
             break;
           }
-          case 24: {
-            int rawValue = input.readEnum();
+          case 26: {
+            java.lang.String s = input.readStringRequireUtf8();
 
-            currency_ = rawValue;
+            currency_ = s;
             break;
           }
           default: {
@@ -116,20 +116,37 @@ private static final long serialVersionUID = 0L;
   }
 
   public static final int CURRENCY_FIELD_NUMBER = 3;
-  private int currency_;
+  private volatile java.lang.Object currency_;
   /**
-   * <code>.alv.wallet.CurrencyType currency = 3;</code>
+   * <code>string currency = 3;</code>
    */
-  public int getCurrencyValue() {
-    return currency_;
+  public java.lang.String getCurrency() {
+    java.lang.Object ref = currency_;
+    if (ref instanceof java.lang.String) {
+      return (java.lang.String) ref;
+    } else {
+      com.google.protobuf.ByteString bs = 
+          (com.google.protobuf.ByteString) ref;
+      java.lang.String s = bs.toStringUtf8();
+      currency_ = s;
+      return s;
+    }
   }
   /**
-   * <code>.alv.wallet.CurrencyType currency = 3;</code>
+   * <code>string currency = 3;</code>
    */
-  public alv.wallet.CurrencyType getCurrency() {
-    @SuppressWarnings("deprecation")
-    alv.wallet.CurrencyType result = alv.wallet.CurrencyType.valueOf(currency_);
-    return result == null ? alv.wallet.CurrencyType.UNRECOGNIZED : result;
+  public com.google.protobuf.ByteString
+      getCurrencyBytes() {
+    java.lang.Object ref = currency_;
+    if (ref instanceof java.lang.String) {
+      com.google.protobuf.ByteString b = 
+          com.google.protobuf.ByteString.copyFromUtf8(
+              (java.lang.String) ref);
+      currency_ = b;
+      return b;
+    } else {
+      return (com.google.protobuf.ByteString) ref;
+    }
   }
 
   private byte memoizedIsInitialized = -1;
@@ -152,8 +169,8 @@ private static final long serialVersionUID = 0L;
     if (amount_ != 0D) {
       output.writeDouble(2, amount_);
     }
-    if (currency_ != alv.wallet.CurrencyType.EUR.getNumber()) {
-      output.writeEnum(3, currency_);
+    if (!getCurrencyBytes().isEmpty()) {
+      com.google.protobuf.GeneratedMessageV3.writeString(output, 3, currency_);
     }
     unknownFields.writeTo(output);
   }
@@ -172,9 +189,8 @@ private static final long serialVersionUID = 0L;
       size += com.google.protobuf.CodedOutputStream
         .computeDoubleSize(2, amount_);
     }
-    if (currency_ != alv.wallet.CurrencyType.EUR.getNumber()) {
-      size += com.google.protobuf.CodedOutputStream
-        .computeEnumSize(3, currency_);
+    if (!getCurrencyBytes().isEmpty()) {
+      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, currency_);
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -196,7 +212,8 @@ private static final long serialVersionUID = 0L;
     if (java.lang.Double.doubleToLongBits(getAmount())
         != java.lang.Double.doubleToLongBits(
             other.getAmount())) return false;
-    if (currency_ != other.currency_) return false;
+    if (!getCurrency()
+        .equals(other.getCurrency())) return false;
     if (!unknownFields.equals(other.unknownFields)) return false;
     return true;
   }
@@ -214,7 +231,7 @@ private static final long serialVersionUID = 0L;
     hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
         java.lang.Double.doubleToLongBits(getAmount()));
     hash = (37 * hash) + CURRENCY_FIELD_NUMBER;
-    hash = (53 * hash) + currency_;
+    hash = (53 * hash) + getCurrency().hashCode();
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -352,7 +369,7 @@ private static final long serialVersionUID = 0L;
 
       amount_ = 0D;
 
-      currency_ = 0;
+      currency_ = "";
 
       return this;
     }
@@ -437,8 +454,9 @@ private static final long serialVersionUID = 0L;
       if (other.getAmount() != 0D) {
         setAmount(other.getAmount());
       }
-      if (other.currency_ != 0) {
-        setCurrencyValue(other.getCurrencyValue());
+      if (!other.getCurrency().isEmpty()) {
+        currency_ = other.currency_;
+        onChanged();
       }
       this.mergeUnknownFields(other.unknownFields);
       onChanged();
@@ -521,47 +539,71 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
-    private int currency_ = 0;
+    private java.lang.Object currency_ = "";
     /**
-     * <code>.alv.wallet.CurrencyType currency = 3;</code>
+     * <code>string currency = 3;</code>
      */
-    public int getCurrencyValue() {
-      return currency_;
+    public java.lang.String getCurrency() {
+      java.lang.Object ref = currency_;
+      if (!(ref instanceof java.lang.String)) {
+        com.google.protobuf.ByteString bs =
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        currency_ = s;
+        return s;
+      } else {
+        return (java.lang.String) ref;
+      }
     }
     /**
-     * <code>.alv.wallet.CurrencyType currency = 3;</code>
+     * <code>string currency = 3;</code>
      */
-    public Builder setCurrencyValue(int value) {
+    public com.google.protobuf.ByteString
+        getCurrencyBytes() {
+      java.lang.Object ref = currency_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        currency_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+    /**
+     * <code>string currency = 3;</code>
+     */
+    public Builder setCurrency(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
       currency_ = value;
       onChanged();
       return this;
     }
     /**
-     * <code>.alv.wallet.CurrencyType currency = 3;</code>
+     * <code>string currency = 3;</code>
      */
-    public alv.wallet.CurrencyType getCurrency() {
-      @SuppressWarnings("deprecation")
-      alv.wallet.CurrencyType result = alv.wallet.CurrencyType.valueOf(currency_);
-      return result == null ? alv.wallet.CurrencyType.UNRECOGNIZED : result;
-    }
-    /**
-     * <code>.alv.wallet.CurrencyType currency = 3;</code>
-     */
-    public Builder setCurrency(alv.wallet.CurrencyType value) {
-      if (value == null) {
-        throw new NullPointerException();
-      }
+    public Builder clearCurrency() {
       
-      currency_ = value.getNumber();
+      currency_ = getDefaultInstance().getCurrency();
       onChanged();
       return this;
     }
     /**
-     * <code>.alv.wallet.CurrencyType currency = 3;</code>
+     * <code>string currency = 3;</code>
      */
-    public Builder clearCurrency() {
+    public Builder setCurrencyBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
       
-      currency_ = 0;
+      currency_ = value;
       onChanged();
       return this;
     }

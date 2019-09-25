@@ -9,3 +9,6 @@ gradle.properties
 
 # Ignore bin folder
 bin
+
+# Ignore build/classes folder
+build/classes

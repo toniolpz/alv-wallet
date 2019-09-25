@@ -53,23 +53,22 @@ public final class Wallet {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\014Wallet.proto\022\nalv.wallet\"]\n\016DepositReq" +
-      "uest\022\017\n\007user_id\030\001 \001(\005\022\016\n\006amount\030\002 \001(\001\022*\n" +
-      "\010currency\030\003 \001(\0162\030.alv.wallet.CurrencyTyp" +
-      "e\"^\n\017WithdrawRequest\022\017\n\007user_id\030\001 \001(\005\022\016\n" +
-      "\006amount\030\002 \001(\001\022*\n\010currency\030\003 \001(\0162\030.alv.wa" +
-      "llet.CurrencyType\"!\n\016BalanceRequest\022\017\n\007u" +
-      "ser_id\030\001 \001(\005\"\234\001\n\017BalanceResponse\022;\n\007bala" +
-      "nce\030\001 \003(\0132*.alv.wallet.BalanceResponse.C" +
-      "urrencyAmount\032L\n\016CurrencyAmount\022*\n\010curre" +
-      "ncy\030\001 \001(\0162\030.alv.wallet.CurrencyType\022\016\n\006a" +
-      "mount\030\002 \001(\001\"\007\n\005Empty*)\n\014CurrencyType\022\007\n\003" +
-      "EUR\020\000\022\007\n\003USD\020\001\022\007\n\003GPB\020\0022\311\001\n\rWalletServic" +
-      "e\0228\n\007deposit\022\032.alv.wallet.DepositRequest" +
-      "\032\021.alv.wallet.Empty\022:\n\010withdraw\022\033.alv.wa" +
-      "llet.WithdrawRequest\032\021.alv.wallet.Empty\022" +
-      "B\n\007balance\022\032.alv.wallet.BalanceRequest\032\033" +
-      ".alv.wallet.BalanceResponseB\002P\001b\006proto3"
+      "\n\014Wallet.proto\022\nalv.wallet\"C\n\016DepositReq" +
+      "uest\022\017\n\007user_id\030\001 \001(\005\022\016\n\006amount\030\002 \001(\001\022\020\n" +
+      "\010currency\030\003 \001(\t\"D\n\017WithdrawRequest\022\017\n\007us" +
+      "er_id\030\001 \001(\005\022\016\n\006amount\030\002 \001(\001\022\020\n\010currency\030" +
+      "\003 \001(\t\"!\n\016BalanceRequest\022\017\n\007user_id\030\001 \001(\005" +
+      "\"\234\001\n\017BalanceResponse\022;\n\007balance\030\001 \003(\0132*." +
+      "alv.wallet.BalanceResponse.CurrencyAmoun" +
+      "t\032L\n\016CurrencyAmount\022*\n\010currency\030\001 \001(\0162\030." +
+      "alv.wallet.CurrencyType\022\016\n\006amount\030\002 \001(\001\"" +
+      "\007\n\005Empty*)\n\014CurrencyType\022\007\n\003EUR\020\000\022\007\n\003USD" +
+      "\020\001\022\007\n\003GPB\020\0022\311\001\n\rWalletService\0228\n\007deposit" +
+      "\022\032.alv.wallet.DepositRequest\032\021.alv.walle" +
+      "t.Empty\022:\n\010withdraw\022\033.alv.wallet.Withdra" +
+      "wRequest\032\021.alv.wallet.Empty\022B\n\007balance\022\032" +
+      ".alv.wallet.BalanceRequest\032\033.alv.wallet." +
+      "BalanceResponseB\002P\001b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

@@ -18,11 +18,12 @@ public interface DepositRequestOrBuilder extends
   double getAmount();
 
   /**
-   * <code>.alv.wallet.CurrencyType currency = 3;</code>
+   * <code>string currency = 3;</code>
    */
-  int getCurrencyValue();
+  java.lang.String getCurrency();
   /**
-   * <code>.alv.wallet.CurrencyType currency = 3;</code>
+   * <code>string currency = 3;</code>
    */
-  alv.wallet.CurrencyType getCurrency();
+  com.google.protobuf.ByteString
+      getCurrencyBytes();
 }

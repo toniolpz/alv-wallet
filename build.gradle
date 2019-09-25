@@ -78,7 +78,7 @@ protobuf {
 
 application {
     // Define the main class for the application
-    mainClassName = 'alv.wallet.App'
+    mainClassName = 'alv.wallet.WalletApplication'
 }
 
 sourceSets {
