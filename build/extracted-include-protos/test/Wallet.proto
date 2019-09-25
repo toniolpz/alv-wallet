@@ -1,0 +1,46 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+package alv.wallet;
+
+message DepositRequest{
+  int32 user_id = 1;
+  double amount = 2;
+  CurrencyType currency = 3;
+}
+
+message WithdrawRequest{
+  int32 user_id = 1;
+  double amount = 2;
+  CurrencyType currency = 3;
+}
+
+message BalanceRequest{
+  int32 user_id = 1;
+}
+
+message BalanceResponse{
+  repeated CurrencyAmount balance = 1;
+
+  message CurrencyAmount{
+    CurrencyType currency = 1;
+    double amount = 2;
+  }
+}
+
+enum CurrencyType{
+  EUR = 0;
+  USD = 1;
+  GPB = 2;
+}
+
+// Empty message for operations with no output needed.
+message Empty{
+
+}
+
+service WalletService {
+  rpc deposit (DepositRequest) returns (Empty);
+  rpc withdraw (WithdrawRequest) returns (Empty);
+  rpc balance (BalanceRequest) returns (BalanceResponse);
+}

@@ -12,23 +12,80 @@ plugins {
 
     // Apply the application plugin to add support for building a CLI application
     id 'application'
+
+    // Apply gradle scan plugin
+    id 'com.gradle.build-scan' version '2.0.2'
+
+    // Apply spring boot plugin
+    id 'org.springframework.boot' version '2.0.5.RELEASE'
+    id 'io.spring.dependency-management' version '1.0.7.RELEASE'
+
+    // Apply protobuf plugin
+    id 'com.google.protobuf' version '0.8.8'
 }
 
 repositories {
     // Use jcenter for resolving dependencies.
-    // You can declare any Maven/Ivy/file repository here.
     jcenter()
+
+    // Maven repository
+    mavenCentral()
 }
 
-dependencies {
-    // This dependency is used by the application.
-    implementation 'com.google.guava:guava:28.0-jre'
+dependencies {    
+    implementation 'org.springframework.boot:spring-boot-dependencies:2.0.5.RELEASE'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+    implementation "io.grpc:grpc-protobuf:1.23.0"
+    implementation "io.grpc:grpc-stub:1.23.0"
+    compileOnly "javax.annotation:javax.annotation-api:1.2"
+    compile 'io.github.lognet:grpc-spring-boot-starter:3.4.1'
+
+    // examples/advanced need this for JsonFormat
+    implementation "com.google.protobuf:protobuf-java-util:3.9.1"
+
+    runtimeOnly "io.grpc:grpc-netty-shaded:1.23.0"
+
+    testImplementation "io.grpc:grpc-testing:1.23.0"
+    testImplementation "junit:junit:4.12"
+
+    components {
+        withModule('org.springframework:spring-beans') {
+            allVariants {
+                withDependencyConstraints {
+                    // Need to patch constraints because snakeyaml is an optional dependency
+                    it.findAll { it.name == 'snakeyaml' }.each { it.version { strictly '1.19' } }
+                }
+            }
+        }
+    }
 
     // Use JUnit test framework
     testImplementation 'junit:junit:4.12'
 }
 
+protobuf {
+    protoc { artifact = "com.google.protobuf:protoc:3.9.1" }
+    plugins {
+        grpc { artifact = "io.grpc:protoc-gen-grpc-java:1.23.0" }
+    }
+    generateProtoTasks {
+        all()*.plugins { grpc {} }
+    }
+}
+
 application {
     // Define the main class for the application
     mainClassName = 'alv.wallet.App'
+}
+
+sourceSets {
+    main {
+        java {
+            srcDirs 'build/generated/source/proto/main/grpc'
+            srcDirs 'build/generated/source/proto/main/java'
+        }
+    }
 }
