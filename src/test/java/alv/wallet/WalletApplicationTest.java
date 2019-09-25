@@ -14,19 +14,29 @@ import alv.wallet.grpc.WalletServiceClient;
 public class WalletApplicationTest {
     @Autowired
     private WalletServiceClient client;
-
+    
     @Test
-    public void testDeposit() {
-        assertThat(client.deposit(1, 100, "MXP").equals(Empty.newBuilder().build()));
+    public void test1() {
+        assertThat(client.withdraw(1, 200, "USD").equals(Empty.newBuilder().build()));
     }
 
     @Test
-    public void testWithdraw() {
-        assertThat(client.withdraw(1, 100, "EUR").equals(Empty.newBuilder().build()));
+    public void test2() {
+        assertThat(client.deposit(1, 100, "USD").equals(Empty.newBuilder().build()));
     }
 
     @Test
-    public void testGetBalance() {
-        assertThat(client.getBalance(1).getCurrencyAmountList().size() > 0);
+    public void test3() {
+        BalanceResponse response =client.getBalance(1);
+        assertThat(response.getCurrencyAmountCount() > 0
+            && response.getCurrencyAmountList().stream()
+            .filter(c -> c.getCurrency().equals(CurrencyType.USD.toString())
+            && c.getAmount() == 100).findAny() != null);
     }
+
+    @Test
+    public void test4() {
+        assertThat(client.withdraw(1, 200, "USD").equals(Empty.newBuilder().build()));
+    }
+
 }
