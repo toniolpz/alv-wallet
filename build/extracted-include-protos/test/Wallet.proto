@@ -6,13 +6,13 @@ package alv.wallet;
 message DepositRequest{
   int32 user_id = 1;
   double amount = 2;
-  CurrencyType currency = 3;
+  string currency = 3;
 }
 
 message WithdrawRequest{
   int32 user_id = 1;
   double amount = 2;
-  CurrencyType currency = 3;
+  string currency = 3;
 }
 
 message BalanceRequest{
@@ -20,10 +20,10 @@ message BalanceRequest{
 }
 
 message BalanceResponse{
-  repeated CurrencyAmount balance = 1;
+  repeated CurrencyAmount currencyAmount = 1;
 
   message CurrencyAmount{
-    CurrencyType currency = 1;
+    string currency = 1;
     double amount = 2;
   }
 }

@@ -8,26 +8,26 @@ public interface BalanceResponseOrBuilder extends
     com.google.protobuf.MessageOrBuilder {
 
   /**
-   * <code>repeated .alv.wallet.BalanceResponse.CurrencyAmount balance = 1;</code>
+   * <code>repeated .alv.wallet.BalanceResponse.CurrencyAmount currencyAmount = 1;</code>
    */
   java.util.List<alv.wallet.BalanceResponse.CurrencyAmount> 
-      getBalanceList();
+      getCurrencyAmountList();
   /**
-   * <code>repeated .alv.wallet.BalanceResponse.CurrencyAmount balance = 1;</code>
+   * <code>repeated .alv.wallet.BalanceResponse.CurrencyAmount currencyAmount = 1;</code>
    */
-  alv.wallet.BalanceResponse.CurrencyAmount getBalance(int index);
+  alv.wallet.BalanceResponse.CurrencyAmount getCurrencyAmount(int index);
   /**
-   * <code>repeated .alv.wallet.BalanceResponse.CurrencyAmount balance = 1;</code>
+   * <code>repeated .alv.wallet.BalanceResponse.CurrencyAmount currencyAmount = 1;</code>
    */
-  int getBalanceCount();
+  int getCurrencyAmountCount();
   /**
-   * <code>repeated .alv.wallet.BalanceResponse.CurrencyAmount balance = 1;</code>
+   * <code>repeated .alv.wallet.BalanceResponse.CurrencyAmount currencyAmount = 1;</code>
    */
   java.util.List<? extends alv.wallet.BalanceResponse.CurrencyAmountOrBuilder> 
-      getBalanceOrBuilderList();
+      getCurrencyAmountOrBuilderList();
   /**
-   * <code>repeated .alv.wallet.BalanceResponse.CurrencyAmount balance = 1;</code>
+   * <code>repeated .alv.wallet.BalanceResponse.CurrencyAmount currencyAmount = 1;</code>
    */
-  alv.wallet.BalanceResponse.CurrencyAmountOrBuilder getBalanceOrBuilder(
+  alv.wallet.BalanceResponse.CurrencyAmountOrBuilder getCurrencyAmountOrBuilder(
       int index);
 }

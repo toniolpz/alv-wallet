@@ -11,12 +11,22 @@ import alv.wallet.grpc.WalletServiceClient;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class WalletApplicationTest{
+public class WalletApplicationTest {
     @Autowired
     private WalletServiceClient client;
 
     @Test
-    public void testDeposit(){
-        assertThat(client.deposit(1, 100, "MXP"));
+    public void testDeposit() {
+        assertThat(client.deposit(1, 100, "MXP").equals(Empty.newBuilder().build()));
+    }
+
+    @Test
+    public void testWithdraw() {
+        assertThat(client.withdraw(1, 100, "EUR").equals(Empty.newBuilder().build()));
+    }
+
+    @Test
+    public void testGetBalance() {
+        assertThat(client.getBalance(1).getCurrencyAmountList().size() > 0);
     }
 }

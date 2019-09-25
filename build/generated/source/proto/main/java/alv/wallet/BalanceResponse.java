@@ -16,7 +16,7 @@ private static final long serialVersionUID = 0L;
     super(builder);
   }
   private BalanceResponse() {
-    balance_ = java.util.Collections.emptyList();
+    currencyAmount_ = java.util.Collections.emptyList();
   }
 
   @java.lang.Override
@@ -52,10 +52,10 @@ private static final long serialVersionUID = 0L;
             break;
           case 10: {
             if (!((mutable_bitField0_ & 0x00000001) != 0)) {
-              balance_ = new java.util.ArrayList<alv.wallet.BalanceResponse.CurrencyAmount>();
+              currencyAmount_ = new java.util.ArrayList<alv.wallet.BalanceResponse.CurrencyAmount>();
               mutable_bitField0_ |= 0x00000001;
             }
-            balance_.add(
+            currencyAmount_.add(
                 input.readMessage(alv.wallet.BalanceResponse.CurrencyAmount.parser(), extensionRegistry));
             break;
           }
@@ -75,7 +75,7 @@ private static final long serialVersionUID = 0L;
           e).setUnfinishedMessage(this);
     } finally {
       if (((mutable_bitField0_ & 0x00000001) != 0)) {
-        balance_ = java.util.Collections.unmodifiableList(balance_);
+        currencyAmount_ = java.util.Collections.unmodifiableList(currencyAmount_);
       }
       this.unknownFields = unknownFields.build();
       makeExtensionsImmutable();
@@ -99,13 +99,14 @@ private static final long serialVersionUID = 0L;
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>.alv.wallet.CurrencyType currency = 1;</code>
+     * <code>string currency = 1;</code>
      */
-    int getCurrencyValue();
+    java.lang.String getCurrency();
     /**
-     * <code>.alv.wallet.CurrencyType currency = 1;</code>
+     * <code>string currency = 1;</code>
      */
-    alv.wallet.CurrencyType getCurrency();
+    com.google.protobuf.ByteString
+        getCurrencyBytes();
 
     /**
      * <code>double amount = 2;</code>
@@ -125,7 +126,7 @@ private static final long serialVersionUID = 0L;
       super(builder);
     }
     private CurrencyAmount() {
-      currency_ = 0;
+      currency_ = "";
     }
 
     @java.lang.Override
@@ -158,10 +159,10 @@ private static final long serialVersionUID = 0L;
             case 0:
               done = true;
               break;
-            case 8: {
-              int rawValue = input.readEnum();
+            case 10: {
+              java.lang.String s = input.readStringRequireUtf8();
 
-              currency_ = rawValue;
+              currency_ = s;
               break;
             }
             case 17: {
@@ -202,20 +203,37 @@ private static final long serialVersionUID = 0L;
     }
 
     public static final int CURRENCY_FIELD_NUMBER = 1;
-    private int currency_;
+    private volatile java.lang.Object currency_;
     /**
-     * <code>.alv.wallet.CurrencyType currency = 1;</code>
+     * <code>string currency = 1;</code>
      */
-    public int getCurrencyValue() {
-      return currency_;
+    public java.lang.String getCurrency() {
+      java.lang.Object ref = currency_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        currency_ = s;
+        return s;
+      }
     }
     /**
-     * <code>.alv.wallet.CurrencyType currency = 1;</code>
+     * <code>string currency = 1;</code>
      */
-    public alv.wallet.CurrencyType getCurrency() {
-      @SuppressWarnings("deprecation")
-      alv.wallet.CurrencyType result = alv.wallet.CurrencyType.valueOf(currency_);
-      return result == null ? alv.wallet.CurrencyType.UNRECOGNIZED : result;
+    public com.google.protobuf.ByteString
+        getCurrencyBytes() {
+      java.lang.Object ref = currency_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        currency_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
     }
 
     public static final int AMOUNT_FIELD_NUMBER = 2;
@@ -241,8 +259,8 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (currency_ != alv.wallet.CurrencyType.EUR.getNumber()) {
-        output.writeEnum(1, currency_);
+      if (!getCurrencyBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, currency_);
       }
       if (amount_ != 0D) {
         output.writeDouble(2, amount_);
@@ -256,9 +274,8 @@ private static final long serialVersionUID = 0L;
       if (size != -1) return size;
 
       size = 0;
-      if (currency_ != alv.wallet.CurrencyType.EUR.getNumber()) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeEnumSize(1, currency_);
+      if (!getCurrencyBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, currency_);
       }
       if (amount_ != 0D) {
         size += com.google.protobuf.CodedOutputStream
@@ -279,7 +296,8 @@ private static final long serialVersionUID = 0L;
       }
       alv.wallet.BalanceResponse.CurrencyAmount other = (alv.wallet.BalanceResponse.CurrencyAmount) obj;
 
-      if (currency_ != other.currency_) return false;
+      if (!getCurrency()
+          .equals(other.getCurrency())) return false;
       if (java.lang.Double.doubleToLongBits(getAmount())
           != java.lang.Double.doubleToLongBits(
               other.getAmount())) return false;
@@ -295,7 +313,7 @@ private static final long serialVersionUID = 0L;
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
       hash = (37 * hash) + CURRENCY_FIELD_NUMBER;
-      hash = (53 * hash) + currency_;
+      hash = (53 * hash) + getCurrency().hashCode();
       hash = (37 * hash) + AMOUNT_FIELD_NUMBER;
       hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
           java.lang.Double.doubleToLongBits(getAmount()));
@@ -432,7 +450,7 @@ private static final long serialVersionUID = 0L;
       @java.lang.Override
       public Builder clear() {
         super.clear();
-        currency_ = 0;
+        currency_ = "";
 
         amount_ = 0D;
 
@@ -512,8 +530,9 @@ private static final long serialVersionUID = 0L;
 
       public Builder mergeFrom(alv.wallet.BalanceResponse.CurrencyAmount other) {
         if (other == alv.wallet.BalanceResponse.CurrencyAmount.getDefaultInstance()) return this;
-        if (other.currency_ != 0) {
-          setCurrencyValue(other.getCurrencyValue());
+        if (!other.getCurrency().isEmpty()) {
+          currency_ = other.currency_;
+          onChanged();
         }
         if (other.getAmount() != 0D) {
           setAmount(other.getAmount());
@@ -547,47 +566,71 @@ private static final long serialVersionUID = 0L;
         return this;
       }
 
-      private int currency_ = 0;
+      private java.lang.Object currency_ = "";
       /**
-       * <code>.alv.wallet.CurrencyType currency = 1;</code>
+       * <code>string currency = 1;</code>
        */
-      public int getCurrencyValue() {
-        return currency_;
+      public java.lang.String getCurrency() {
+        java.lang.Object ref = currency_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          currency_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
       }
       /**
-       * <code>.alv.wallet.CurrencyType currency = 1;</code>
+       * <code>string currency = 1;</code>
        */
-      public Builder setCurrencyValue(int value) {
+      public com.google.protobuf.ByteString
+          getCurrencyBytes() {
+        java.lang.Object ref = currency_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          currency_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string currency = 1;</code>
+       */
+      public Builder setCurrency(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
         currency_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>.alv.wallet.CurrencyType currency = 1;</code>
+       * <code>string currency = 1;</code>
        */
-      public alv.wallet.CurrencyType getCurrency() {
-        @SuppressWarnings("deprecation")
-        alv.wallet.CurrencyType result = alv.wallet.CurrencyType.valueOf(currency_);
-        return result == null ? alv.wallet.CurrencyType.UNRECOGNIZED : result;
-      }
-      /**
-       * <code>.alv.wallet.CurrencyType currency = 1;</code>
-       */
-      public Builder setCurrency(alv.wallet.CurrencyType value) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
+      public Builder clearCurrency() {
         
-        currency_ = value.getNumber();
+        currency_ = getDefaultInstance().getCurrency();
         onChanged();
         return this;
       }
       /**
-       * <code>.alv.wallet.CurrencyType currency = 1;</code>
+       * <code>string currency = 1;</code>
        */
-      public Builder clearCurrency() {
+      public Builder setCurrencyBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
         
-        currency_ = 0;
+        currency_ = value;
         onChanged();
         return this;
       }
@@ -670,39 +713,39 @@ private static final long serialVersionUID = 0L;
 
   }
 
-  public static final int BALANCE_FIELD_NUMBER = 1;
-  private java.util.List<alv.wallet.BalanceResponse.CurrencyAmount> balance_;
+  public static final int CURRENCYAMOUNT_FIELD_NUMBER = 1;
+  private java.util.List<alv.wallet.BalanceResponse.CurrencyAmount> currencyAmount_;
   /**
-   * <code>repeated .alv.wallet.BalanceResponse.CurrencyAmount balance = 1;</code>
+   * <code>repeated .alv.wallet.BalanceResponse.CurrencyAmount currencyAmount = 1;</code>
    */
-  public java.util.List<alv.wallet.BalanceResponse.CurrencyAmount> getBalanceList() {
-    return balance_;
+  public java.util.List<alv.wallet.BalanceResponse.CurrencyAmount> getCurrencyAmountList() {
+    return currencyAmount_;
   }
   /**
-   * <code>repeated .alv.wallet.BalanceResponse.CurrencyAmount balance = 1;</code>
+   * <code>repeated .alv.wallet.BalanceResponse.CurrencyAmount currencyAmount = 1;</code>
    */
   public java.util.List<? extends alv.wallet.BalanceResponse.CurrencyAmountOrBuilder> 
-      getBalanceOrBuilderList() {
-    return balance_;
+      getCurrencyAmountOrBuilderList() {
+    return currencyAmount_;
   }
   /**
-   * <code>repeated .alv.wallet.BalanceResponse.CurrencyAmount balance = 1;</code>
+   * <code>repeated .alv.wallet.BalanceResponse.CurrencyAmount currencyAmount = 1;</code>
    */
-  public int getBalanceCount() {
-    return balance_.size();
+  public int getCurrencyAmountCount() {
+    return currencyAmount_.size();
   }
   /**
-   * <code>repeated .alv.wallet.BalanceResponse.CurrencyAmount balance = 1;</code>
+   * <code>repeated .alv.wallet.BalanceResponse.CurrencyAmount currencyAmount = 1;</code>
    */
-  public alv.wallet.BalanceResponse.CurrencyAmount getBalance(int index) {
-    return balance_.get(index);
+  public alv.wallet.BalanceResponse.CurrencyAmount getCurrencyAmount(int index) {
+    return currencyAmount_.get(index);
   }
   /**
-   * <code>repeated .alv.wallet.BalanceResponse.CurrencyAmount balance = 1;</code>
+   * <code>repeated .alv.wallet.BalanceResponse.CurrencyAmount currencyAmount = 1;</code>
    */
-  public alv.wallet.BalanceResponse.CurrencyAmountOrBuilder getBalanceOrBuilder(
+  public alv.wallet.BalanceResponse.CurrencyAmountOrBuilder getCurrencyAmountOrBuilder(
       int index) {
-    return balance_.get(index);
+    return currencyAmount_.get(index);
   }
 
   private byte memoizedIsInitialized = -1;
@@ -719,8 +762,8 @@ private static final long serialVersionUID = 0L;
   @java.lang.Override
   public void writeTo(com.google.protobuf.CodedOutputStream output)
                       throws java.io.IOException {
-    for (int i = 0; i < balance_.size(); i++) {
-      output.writeMessage(1, balance_.get(i));
+    for (int i = 0; i < currencyAmount_.size(); i++) {
+      output.writeMessage(1, currencyAmount_.get(i));
     }
     unknownFields.writeTo(output);
   }
@@ -731,9 +774,9 @@ private static final long serialVersionUID = 0L;
     if (size != -1) return size;
 
     size = 0;
-    for (int i = 0; i < balance_.size(); i++) {
+    for (int i = 0; i < currencyAmount_.size(); i++) {
       size += com.google.protobuf.CodedOutputStream
-        .computeMessageSize(1, balance_.get(i));
+        .computeMessageSize(1, currencyAmount_.get(i));
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -750,8 +793,8 @@ private static final long serialVersionUID = 0L;
     }
     alv.wallet.BalanceResponse other = (alv.wallet.BalanceResponse) obj;
 
-    if (!getBalanceList()
-        .equals(other.getBalanceList())) return false;
+    if (!getCurrencyAmountList()
+        .equals(other.getCurrencyAmountList())) return false;
     if (!unknownFields.equals(other.unknownFields)) return false;
     return true;
   }
@@ -763,9 +806,9 @@ private static final long serialVersionUID = 0L;
     }
     int hash = 41;
     hash = (19 * hash) + getDescriptor().hashCode();
-    if (getBalanceCount() > 0) {
-      hash = (37 * hash) + BALANCE_FIELD_NUMBER;
-      hash = (53 * hash) + getBalanceList().hashCode();
+    if (getCurrencyAmountCount() > 0) {
+      hash = (37 * hash) + CURRENCYAMOUNT_FIELD_NUMBER;
+      hash = (53 * hash) + getCurrencyAmountList().hashCode();
     }
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
@@ -895,17 +938,17 @@ private static final long serialVersionUID = 0L;
     private void maybeForceBuilderInitialization() {
       if (com.google.protobuf.GeneratedMessageV3
               .alwaysUseFieldBuilders) {
-        getBalanceFieldBuilder();
+        getCurrencyAmountFieldBuilder();
       }
     }
     @java.lang.Override
     public Builder clear() {
       super.clear();
-      if (balanceBuilder_ == null) {
-        balance_ = java.util.Collections.emptyList();
+      if (currencyAmountBuilder_ == null) {
+        currencyAmount_ = java.util.Collections.emptyList();
         bitField0_ = (bitField0_ & ~0x00000001);
       } else {
-        balanceBuilder_.clear();
+        currencyAmountBuilder_.clear();
       }
       return this;
     }
@@ -934,14 +977,14 @@ private static final long serialVersionUID = 0L;
     public alv.wallet.BalanceResponse buildPartial() {
       alv.wallet.BalanceResponse result = new alv.wallet.BalanceResponse(this);
       int from_bitField0_ = bitField0_;
-      if (balanceBuilder_ == null) {
+      if (currencyAmountBuilder_ == null) {
         if (((bitField0_ & 0x00000001) != 0)) {
-          balance_ = java.util.Collections.unmodifiableList(balance_);
+          currencyAmount_ = java.util.Collections.unmodifiableList(currencyAmount_);
           bitField0_ = (bitField0_ & ~0x00000001);
         }
-        result.balance_ = balance_;
+        result.currencyAmount_ = currencyAmount_;
       } else {
-        result.balance_ = balanceBuilder_.build();
+        result.currencyAmount_ = currencyAmountBuilder_.build();
       }
       onBuilt();
       return result;
@@ -991,29 +1034,29 @@ private static final long serialVersionUID = 0L;
 
     public Builder mergeFrom(alv.wallet.BalanceResponse other) {
       if (other == alv.wallet.BalanceResponse.getDefaultInstance()) return this;
-      if (balanceBuilder_ == null) {
-        if (!other.balance_.isEmpty()) {
-          if (balance_.isEmpty()) {
-            balance_ = other.balance_;
+      if (currencyAmountBuilder_ == null) {
+        if (!other.currencyAmount_.isEmpty()) {
+          if (currencyAmount_.isEmpty()) {
+            currencyAmount_ = other.currencyAmount_;
             bitField0_ = (bitField0_ & ~0x00000001);
           } else {
-            ensureBalanceIsMutable();
-            balance_.addAll(other.balance_);
+            ensureCurrencyAmountIsMutable();
+            currencyAmount_.addAll(other.currencyAmount_);
           }
           onChanged();
         }
       } else {
-        if (!other.balance_.isEmpty()) {
-          if (balanceBuilder_.isEmpty()) {
-            balanceBuilder_.dispose();
-            balanceBuilder_ = null;
-            balance_ = other.balance_;
+        if (!other.currencyAmount_.isEmpty()) {
+          if (currencyAmountBuilder_.isEmpty()) {
+            currencyAmountBuilder_.dispose();
+            currencyAmountBuilder_ = null;
+            currencyAmount_ = other.currencyAmount_;
             bitField0_ = (bitField0_ & ~0x00000001);
-            balanceBuilder_ = 
+            currencyAmountBuilder_ = 
               com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
-                 getBalanceFieldBuilder() : null;
+                 getCurrencyAmountFieldBuilder() : null;
           } else {
-            balanceBuilder_.addAllMessages(other.balance_);
+            currencyAmountBuilder_.addAllMessages(other.currencyAmount_);
           }
         }
       }
@@ -1047,244 +1090,244 @@ private static final long serialVersionUID = 0L;
     }
     private int bitField0_;
 
-    private java.util.List<alv.wallet.BalanceResponse.CurrencyAmount> balance_ =
+    private java.util.List<alv.wallet.BalanceResponse.CurrencyAmount> currencyAmount_ =
       java.util.Collections.emptyList();
-    private void ensureBalanceIsMutable() {
+    private void ensureCurrencyAmountIsMutable() {
       if (!((bitField0_ & 0x00000001) != 0)) {
-        balance_ = new java.util.ArrayList<alv.wallet.BalanceResponse.CurrencyAmount>(balance_);
+        currencyAmount_ = new java.util.ArrayList<alv.wallet.BalanceResponse.CurrencyAmount>(currencyAmount_);
         bitField0_ |= 0x00000001;
        }
     }
 
     private com.google.protobuf.RepeatedFieldBuilderV3<
-        alv.wallet.BalanceResponse.CurrencyAmount, alv.wallet.BalanceResponse.CurrencyAmount.Builder, alv.wallet.BalanceResponse.CurrencyAmountOrBuilder> balanceBuilder_;
+        alv.wallet.BalanceResponse.CurrencyAmount, alv.wallet.BalanceResponse.CurrencyAmount.Builder, alv.wallet.BalanceResponse.CurrencyAmountOrBuilder> currencyAmountBuilder_;
 
     /**
-     * <code>repeated .alv.wallet.BalanceResponse.CurrencyAmount balance = 1;</code>
+     * <code>repeated .alv.wallet.BalanceResponse.CurrencyAmount currencyAmount = 1;</code>
      */
-    public java.util.List<alv.wallet.BalanceResponse.CurrencyAmount> getBalanceList() {
-      if (balanceBuilder_ == null) {
-        return java.util.Collections.unmodifiableList(balance_);
+    public java.util.List<alv.wallet.BalanceResponse.CurrencyAmount> getCurrencyAmountList() {
+      if (currencyAmountBuilder_ == null) {
+        return java.util.Collections.unmodifiableList(currencyAmount_);
       } else {
-        return balanceBuilder_.getMessageList();
+        return currencyAmountBuilder_.getMessageList();
       }
     }
     /**
-     * <code>repeated .alv.wallet.BalanceResponse.CurrencyAmount balance = 1;</code>
+     * <code>repeated .alv.wallet.BalanceResponse.CurrencyAmount currencyAmount = 1;</code>
      */
-    public int getBalanceCount() {
-      if (balanceBuilder_ == null) {
-        return balance_.size();
+    public int getCurrencyAmountCount() {
+      if (currencyAmountBuilder_ == null) {
+        return currencyAmount_.size();
       } else {
-        return balanceBuilder_.getCount();
+        return currencyAmountBuilder_.getCount();
       }
     }
     /**
-     * <code>repeated .alv.wallet.BalanceResponse.CurrencyAmount balance = 1;</code>
+     * <code>repeated .alv.wallet.BalanceResponse.CurrencyAmount currencyAmount = 1;</code>
      */
-    public alv.wallet.BalanceResponse.CurrencyAmount getBalance(int index) {
-      if (balanceBuilder_ == null) {
-        return balance_.get(index);
+    public alv.wallet.BalanceResponse.CurrencyAmount getCurrencyAmount(int index) {
+      if (currencyAmountBuilder_ == null) {
+        return currencyAmount_.get(index);
       } else {
-        return balanceBuilder_.getMessage(index);
+        return currencyAmountBuilder_.getMessage(index);
       }
     }
     /**
-     * <code>repeated .alv.wallet.BalanceResponse.CurrencyAmount balance = 1;</code>
+     * <code>repeated .alv.wallet.BalanceResponse.CurrencyAmount currencyAmount = 1;</code>
      */
-    public Builder setBalance(
+    public Builder setCurrencyAmount(
         int index, alv.wallet.BalanceResponse.CurrencyAmount value) {
-      if (balanceBuilder_ == null) {
+      if (currencyAmountBuilder_ == null) {
         if (value == null) {
           throw new NullPointerException();
         }
-        ensureBalanceIsMutable();
-        balance_.set(index, value);
+        ensureCurrencyAmountIsMutable();
+        currencyAmount_.set(index, value);
         onChanged();
       } else {
-        balanceBuilder_.setMessage(index, value);
+        currencyAmountBuilder_.setMessage(index, value);
       }
       return this;
     }
     /**
-     * <code>repeated .alv.wallet.BalanceResponse.CurrencyAmount balance = 1;</code>
+     * <code>repeated .alv.wallet.BalanceResponse.CurrencyAmount currencyAmount = 1;</code>
      */
-    public Builder setBalance(
+    public Builder setCurrencyAmount(
         int index, alv.wallet.BalanceResponse.CurrencyAmount.Builder builderForValue) {
-      if (balanceBuilder_ == null) {
-        ensureBalanceIsMutable();
-        balance_.set(index, builderForValue.build());
+      if (currencyAmountBuilder_ == null) {
+        ensureCurrencyAmountIsMutable();
+        currencyAmount_.set(index, builderForValue.build());
         onChanged();
       } else {
-        balanceBuilder_.setMessage(index, builderForValue.build());
+        currencyAmountBuilder_.setMessage(index, builderForValue.build());
       }
       return this;
     }
     /**
-     * <code>repeated .alv.wallet.BalanceResponse.CurrencyAmount balance = 1;</code>
+     * <code>repeated .alv.wallet.BalanceResponse.CurrencyAmount currencyAmount = 1;</code>
      */
-    public Builder addBalance(alv.wallet.BalanceResponse.CurrencyAmount value) {
-      if (balanceBuilder_ == null) {
+    public Builder addCurrencyAmount(alv.wallet.BalanceResponse.CurrencyAmount value) {
+      if (currencyAmountBuilder_ == null) {
         if (value == null) {
           throw new NullPointerException();
         }
-        ensureBalanceIsMutable();
-        balance_.add(value);
+        ensureCurrencyAmountIsMutable();
+        currencyAmount_.add(value);
         onChanged();
       } else {
-        balanceBuilder_.addMessage(value);
+        currencyAmountBuilder_.addMessage(value);
       }
       return this;
     }
     /**
-     * <code>repeated .alv.wallet.BalanceResponse.CurrencyAmount balance = 1;</code>
+     * <code>repeated .alv.wallet.BalanceResponse.CurrencyAmount currencyAmount = 1;</code>
      */
-    public Builder addBalance(
+    public Builder addCurrencyAmount(
         int index, alv.wallet.BalanceResponse.CurrencyAmount value) {
-      if (balanceBuilder_ == null) {
+      if (currencyAmountBuilder_ == null) {
         if (value == null) {
           throw new NullPointerException();
         }
-        ensureBalanceIsMutable();
-        balance_.add(index, value);
+        ensureCurrencyAmountIsMutable();
+        currencyAmount_.add(index, value);
         onChanged();
       } else {
-        balanceBuilder_.addMessage(index, value);
+        currencyAmountBuilder_.addMessage(index, value);
       }
       return this;
     }
     /**
-     * <code>repeated .alv.wallet.BalanceResponse.CurrencyAmount balance = 1;</code>
+     * <code>repeated .alv.wallet.BalanceResponse.CurrencyAmount currencyAmount = 1;</code>
      */
-    public Builder addBalance(
+    public Builder addCurrencyAmount(
         alv.wallet.BalanceResponse.CurrencyAmount.Builder builderForValue) {
-      if (balanceBuilder_ == null) {
-        ensureBalanceIsMutable();
-        balance_.add(builderForValue.build());
+      if (currencyAmountBuilder_ == null) {
+        ensureCurrencyAmountIsMutable();
+        currencyAmount_.add(builderForValue.build());
         onChanged();
       } else {
-        balanceBuilder_.addMessage(builderForValue.build());
+        currencyAmountBuilder_.addMessage(builderForValue.build());
       }
       return this;
     }
     /**
-     * <code>repeated .alv.wallet.BalanceResponse.CurrencyAmount balance = 1;</code>
+     * <code>repeated .alv.wallet.BalanceResponse.CurrencyAmount currencyAmount = 1;</code>
      */
-    public Builder addBalance(
+    public Builder addCurrencyAmount(
         int index, alv.wallet.BalanceResponse.CurrencyAmount.Builder builderForValue) {
-      if (balanceBuilder_ == null) {
-        ensureBalanceIsMutable();
-        balance_.add(index, builderForValue.build());
+      if (currencyAmountBuilder_ == null) {
+        ensureCurrencyAmountIsMutable();
+        currencyAmount_.add(index, builderForValue.build());
         onChanged();
       } else {
-        balanceBuilder_.addMessage(index, builderForValue.build());
+        currencyAmountBuilder_.addMessage(index, builderForValue.build());
       }
       return this;
     }
     /**
-     * <code>repeated .alv.wallet.BalanceResponse.CurrencyAmount balance = 1;</code>
+     * <code>repeated .alv.wallet.BalanceResponse.CurrencyAmount currencyAmount = 1;</code>
      */
-    public Builder addAllBalance(
+    public Builder addAllCurrencyAmount(
         java.lang.Iterable<? extends alv.wallet.BalanceResponse.CurrencyAmount> values) {
-      if (balanceBuilder_ == null) {
-        ensureBalanceIsMutable();
+      if (currencyAmountBuilder_ == null) {
+        ensureCurrencyAmountIsMutable();
         com.google.protobuf.AbstractMessageLite.Builder.addAll(
-            values, balance_);
+            values, currencyAmount_);
         onChanged();
       } else {
-        balanceBuilder_.addAllMessages(values);
+        currencyAmountBuilder_.addAllMessages(values);
       }
       return this;
     }
     /**
-     * <code>repeated .alv.wallet.BalanceResponse.CurrencyAmount balance = 1;</code>
+     * <code>repeated .alv.wallet.BalanceResponse.CurrencyAmount currencyAmount = 1;</code>
      */
-    public Builder clearBalance() {
-      if (balanceBuilder_ == null) {
-        balance_ = java.util.Collections.emptyList();
+    public Builder clearCurrencyAmount() {
+      if (currencyAmountBuilder_ == null) {
+        currencyAmount_ = java.util.Collections.emptyList();
         bitField0_ = (bitField0_ & ~0x00000001);
         onChanged();
       } else {
-        balanceBuilder_.clear();
+        currencyAmountBuilder_.clear();
       }
       return this;
     }
     /**
-     * <code>repeated .alv.wallet.BalanceResponse.CurrencyAmount balance = 1;</code>
+     * <code>repeated .alv.wallet.BalanceResponse.CurrencyAmount currencyAmount = 1;</code>
      */
-    public Builder removeBalance(int index) {
-      if (balanceBuilder_ == null) {
-        ensureBalanceIsMutable();
-        balance_.remove(index);
+    public Builder removeCurrencyAmount(int index) {
+      if (currencyAmountBuilder_ == null) {
+        ensureCurrencyAmountIsMutable();
+        currencyAmount_.remove(index);
         onChanged();
       } else {
-        balanceBuilder_.remove(index);
+        currencyAmountBuilder_.remove(index);
       }
       return this;
     }
     /**
-     * <code>repeated .alv.wallet.BalanceResponse.CurrencyAmount balance = 1;</code>
+     * <code>repeated .alv.wallet.BalanceResponse.CurrencyAmount currencyAmount = 1;</code>
      */
-    public alv.wallet.BalanceResponse.CurrencyAmount.Builder getBalanceBuilder(
+    public alv.wallet.BalanceResponse.CurrencyAmount.Builder getCurrencyAmountBuilder(
         int index) {
-      return getBalanceFieldBuilder().getBuilder(index);
+      return getCurrencyAmountFieldBuilder().getBuilder(index);
     }
     /**
-     * <code>repeated .alv.wallet.BalanceResponse.CurrencyAmount balance = 1;</code>
+     * <code>repeated .alv.wallet.BalanceResponse.CurrencyAmount currencyAmount = 1;</code>
      */
-    public alv.wallet.BalanceResponse.CurrencyAmountOrBuilder getBalanceOrBuilder(
+    public alv.wallet.BalanceResponse.CurrencyAmountOrBuilder getCurrencyAmountOrBuilder(
         int index) {
-      if (balanceBuilder_ == null) {
-        return balance_.get(index);  } else {
-        return balanceBuilder_.getMessageOrBuilder(index);
+      if (currencyAmountBuilder_ == null) {
+        return currencyAmount_.get(index);  } else {
+        return currencyAmountBuilder_.getMessageOrBuilder(index);
       }
     }
     /**
-     * <code>repeated .alv.wallet.BalanceResponse.CurrencyAmount balance = 1;</code>
+     * <code>repeated .alv.wallet.BalanceResponse.CurrencyAmount currencyAmount = 1;</code>
      */
     public java.util.List<? extends alv.wallet.BalanceResponse.CurrencyAmountOrBuilder> 
-         getBalanceOrBuilderList() {
-      if (balanceBuilder_ != null) {
-        return balanceBuilder_.getMessageOrBuilderList();
+         getCurrencyAmountOrBuilderList() {
+      if (currencyAmountBuilder_ != null) {
+        return currencyAmountBuilder_.getMessageOrBuilderList();
       } else {
-        return java.util.Collections.unmodifiableList(balance_);
+        return java.util.Collections.unmodifiableList(currencyAmount_);
       }
     }
     /**
-     * <code>repeated .alv.wallet.BalanceResponse.CurrencyAmount balance = 1;</code>
+     * <code>repeated .alv.wallet.BalanceResponse.CurrencyAmount currencyAmount = 1;</code>
      */
-    public alv.wallet.BalanceResponse.CurrencyAmount.Builder addBalanceBuilder() {
-      return getBalanceFieldBuilder().addBuilder(
+    public alv.wallet.BalanceResponse.CurrencyAmount.Builder addCurrencyAmountBuilder() {
+      return getCurrencyAmountFieldBuilder().addBuilder(
           alv.wallet.BalanceResponse.CurrencyAmount.getDefaultInstance());
     }
     /**
-     * <code>repeated .alv.wallet.BalanceResponse.CurrencyAmount balance = 1;</code>
+     * <code>repeated .alv.wallet.BalanceResponse.CurrencyAmount currencyAmount = 1;</code>
      */
-    public alv.wallet.BalanceResponse.CurrencyAmount.Builder addBalanceBuilder(
+    public alv.wallet.BalanceResponse.CurrencyAmount.Builder addCurrencyAmountBuilder(
         int index) {
-      return getBalanceFieldBuilder().addBuilder(
+      return getCurrencyAmountFieldBuilder().addBuilder(
           index, alv.wallet.BalanceResponse.CurrencyAmount.getDefaultInstance());
     }
     /**
-     * <code>repeated .alv.wallet.BalanceResponse.CurrencyAmount balance = 1;</code>
+     * <code>repeated .alv.wallet.BalanceResponse.CurrencyAmount currencyAmount = 1;</code>
      */
     public java.util.List<alv.wallet.BalanceResponse.CurrencyAmount.Builder> 
-         getBalanceBuilderList() {
-      return getBalanceFieldBuilder().getBuilderList();
+         getCurrencyAmountBuilderList() {
+      return getCurrencyAmountFieldBuilder().getBuilderList();
     }
     private com.google.protobuf.RepeatedFieldBuilderV3<
         alv.wallet.BalanceResponse.CurrencyAmount, alv.wallet.BalanceResponse.CurrencyAmount.Builder, alv.wallet.BalanceResponse.CurrencyAmountOrBuilder> 
-        getBalanceFieldBuilder() {
-      if (balanceBuilder_ == null) {
-        balanceBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+        getCurrencyAmountFieldBuilder() {
+      if (currencyAmountBuilder_ == null) {
+        currencyAmountBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
             alv.wallet.BalanceResponse.CurrencyAmount, alv.wallet.BalanceResponse.CurrencyAmount.Builder, alv.wallet.BalanceResponse.CurrencyAmountOrBuilder>(
-                balance_,
+                currencyAmount_,
                 ((bitField0_ & 0x00000001) != 0),
                 getParentForChildren(),
                 isClean());
-        balance_ = null;
+        currencyAmount_ = null;
       }
-      return balanceBuilder_;
+      return currencyAmountBuilder_;
     }
     @java.lang.Override
     public final Builder setUnknownFields(
