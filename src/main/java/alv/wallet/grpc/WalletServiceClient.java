@@ -15,6 +15,8 @@ import alv.wallet.WalletServiceGrpc;
 import alv.wallet.WithdrawRequest;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
+import io.grpc.StatusRuntimeException;
+import javassist.bytecode.stackmap.BasicBlock.Catch;
 
 @Component
 public class WalletServiceClient {
@@ -29,17 +31,27 @@ public class WalletServiceClient {
     }
 
     public Empty deposit(Integer idUser, double amount, String currency) {
-        DepositRequest request = DepositRequest.newBuilder().setUserId(idUser).setAmount(amount).setCurrency(currency)
-                .build();
-        Empty response = walletServiceBlockingStub.deposit(request);
-        return response;
+        try {
+            DepositRequest request = DepositRequest.newBuilder().setUserId(idUser).setAmount(amount)
+                    .setCurrency(currency).build();
+            Empty response = walletServiceBlockingStub.deposit(request);
+            return response;
+        } catch (Exception e) {
+            LOGGER.error(e.getMessage(), e);
+            throw e;
+        }
     }
 
     public Empty withdraw(Integer idUser, double amount, String currency) {
-        WithdrawRequest request = WithdrawRequest.newBuilder().setUserId(idUser).setAmount(amount).setCurrency(currency)
-                .build();
-        Empty response = walletServiceBlockingStub.withdraw(request);
-        return response;
+        try {
+            WithdrawRequest request = WithdrawRequest.newBuilder().setUserId(idUser).setAmount(amount)
+                    .setCurrency(currency).build();
+            Empty response = walletServiceBlockingStub.withdraw(request);
+            return response;
+        } catch (Exception e) {
+            LOGGER.error(e.getMessage(), e);
+            throw e;
+        }
     }
 
     public BalanceResponse getBalance(Integer idUser) {
