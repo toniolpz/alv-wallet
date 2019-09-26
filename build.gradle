@@ -80,13 +80,19 @@ protobuf {
 }
 
 application {
-    // Define the main class for the application
+    // Building Server
     //mainClassName = 'alv.wallet.WalletApplication'
+
+    // Building Client
     mainClassName = 'alv.wallet.client.App'
 }
 
 bootJar {
-   archiveName = 'wallet-client.jar'
+    // Building Server
+    //archiveName = 'wallet-server.jar'
+
+    // Building Client
+    archiveName = 'wallet-client.jar'
 }
 
 sourceSets {

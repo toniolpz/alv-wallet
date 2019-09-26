@@ -1,5 +1,7 @@
 package alv.wallet.client;
 
+import java.util.concurrent.ExecutorService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -16,7 +18,7 @@ public class App {
     @Autowired
     private WalletServiceClient client;
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         System.out.println("Users: ");
         String users = System.console().readLine();
         System.out.println("Concurrent threads per user: ");
@@ -30,13 +32,17 @@ public class App {
         threadsQuantity = Integer.parseInt(threads);
         roundsQuantity = Integer.parseInt(rounds);
 
+        if(usersQuantity * threadsQuantity * roundsQuantity > 10000){
+            throw new IllegalArgumentException("Try with lower numbers, I can't handle so much request by the moment");
+        }
+
         ApplicationContext context = new AnnotationConfigApplicationContext(App.class);
         App app = context.getBean(App.class);
         app.executeRounds(usersQuantity, threadsQuantity, roundsQuantity);
     }
 
     private void executeRounds(int users, int threads, int rounds) {
-        // Concurrent users
+        // Concurrent users        
         for (Integer i = 1; i <= users; i++) {
             // Simultaneous threads per user
             for (int j = 0; j <= threads; j++) {
