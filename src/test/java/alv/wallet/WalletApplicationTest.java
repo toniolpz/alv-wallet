@@ -14,7 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import alv.wallet.grpc.WalletServiceClient;
+import alv.wallet.grpc.client.WalletServiceClient;
 import io.grpc.StatusRuntimeException;
 
 @RunWith(SpringRunner.class)

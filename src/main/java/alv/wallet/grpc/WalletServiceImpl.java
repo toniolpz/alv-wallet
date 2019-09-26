@@ -63,10 +63,14 @@ public class WalletServiceImpl extends WalletServiceGrpc.WalletServiceImplBase {
             responseObserver.onNext(response);
             responseObserver.onCompleted();
         } catch (IllegalArgumentException e) {
+            LOGGER.error("Unknown currency.", e);
+
             // Handle unknown currency error
             responseObserver.onError(Status.INVALID_ARGUMENT.withDescription("Unknown currency.")
                     .augmentDescription("The " + request.getCurrency() + " currency is invalid.").asRuntimeException());
         } catch (Exception e) {
+            LOGGER.error(e.getMessage(), e);
+            
             responseObserver.onError(
                     Status.INTERNAL.withDescription(e.getMessage()).augmentDescription("Error").asRuntimeException());
         }
@@ -107,13 +111,19 @@ public class WalletServiceImpl extends WalletServiceGrpc.WalletServiceImplBase {
             responseObserver.onCompleted();
 
         } catch (IllegalArgumentException e) {
+            LOGGER.error("Unknown currency.", e);
+
             // Handle unknown currency error
             responseObserver.onError(Status.INVALID_ARGUMENT.withDescription("Unknown currency.")
                     .augmentDescription("The " + request.getCurrency() + " currency is invalid.").asRuntimeException());
         } catch (InsufficientFundsException e) {
+            LOGGER.error(e.getMessage(), e);
+
             // Handle InsufficientFundsException
             responseObserver.onError(Status.INTERNAL.withDescription(e.getMessage()).asRuntimeException());
         } catch (Exception e) {
+            LOGGER.error(e.getMessage(), e);
+
             responseObserver.onError(
                     Status.INTERNAL.withDescription(e.getMessage()).augmentDescription("Error").asRuntimeException());
         }
@@ -138,6 +148,5 @@ public class WalletServiceImpl extends WalletServiceGrpc.WalletServiceImplBase {
 
         responseObserver.onNext(response);
         responseObserver.onCompleted();
-        ;
     }
 }

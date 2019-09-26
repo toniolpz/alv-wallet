@@ -1,4 +1,4 @@
 Manifest-Version: 1.0
-Start-Class: alv.wallet.WalletApplication
+Start-Class: alv.wallet.client.App
 Main-Class: org.springframework.boot.loader.JarLauncher
 

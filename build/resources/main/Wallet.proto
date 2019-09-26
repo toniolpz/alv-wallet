@@ -31,7 +31,7 @@ message BalanceResponse{
 enum CurrencyType{
   EUR = 0;
   USD = 1;
-  GPB = 2;
+  GBP = 2;
 }
 
 // Empty message for operations with no output needed.

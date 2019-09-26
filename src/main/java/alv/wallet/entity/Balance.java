@@ -4,9 +4,10 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 @Entity
-@Table(name = "balance")
+@Table(name = "balance", uniqueConstraints = { @UniqueConstraint(columnNames = { "user_id", "currency" }) })
 public class Balance {
 
     @Id
@@ -16,10 +17,10 @@ public class Balance {
     @Column(name = "user_id")
     private int userId;
 
-    @Column(name="currency")
+    @Column(name = "currency")
     private String currency;
 
-    @Column(name="amount")
+    @Column(name = "amount")
     private double amount;
 
     public int getId() {
@@ -38,11 +39,11 @@ public class Balance {
         this.userId = userId;
     }
 
-    public String getCurrency(){
+    public String getCurrency() {
         return currency;
     }
 
-    public void setCurrency(String currency){
+    public void setCurrency(String currency) {
         this.currency = currency;
     }
 

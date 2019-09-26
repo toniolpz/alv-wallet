@@ -32,26 +32,29 @@ repositories {
     mavenCentral()
 }
 
+def grpcVersion = '1.23.0' // CURRENT_GRPC_VERSION
+def protobufVersion = '3.9.1'
+def protocVersion = protobufVersion
 dependencies {    
-    implementation 'org.springframework.boot:spring-boot-dependencies:2.0.5.RELEASE'
-    implementation 'org.springframework.boot:spring-boot-starter-web'
-
-    testImplementation 'org.springframework.boot:spring-boot-starter-test'
-
-    implementation "io.grpc:grpc-protobuf:1.23.0"
-    implementation "io.grpc:grpc-stub:1.23.0"
-    compileOnly "javax.annotation:javax.annotation-api:1.2"
     compile 'io.github.lognet:grpc-spring-boot-starter:3.4.1'
     compile 'org.springframework.boot:spring-boot-starter-data-jpa:2.1.4.RELEASE'
     compile 'javax.servlet:javax.servlet-api:3.1.0'
     compile 'mysql:mysql-connector-java:5.1.48'
 
-    // examples/advanced need this for JsonFormat
-    implementation "com.google.protobuf:protobuf-java-util:3.9.1"
+    implementation 'org.springframework.boot:spring-boot-dependencies:2.0.5.RELEASE'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
 
-    runtimeOnly "io.grpc:grpc-netty-shaded:1.23.0"
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
-    testImplementation "io.grpc:grpc-testing:1.23.0"
+    implementation "io.grpc:grpc-protobuf:${grpcVersion}"
+    implementation "io.grpc:grpc-stub:${grpcVersion}"
+    compileOnly "javax.annotation:javax.annotation-api:1.2"
+
+    implementation "com.google.protobuf:protobuf-java-util:${protobufVersion}"
+
+    runtimeOnly "io.grpc:grpc-netty-shaded:${grpcVersion}"
+
+    testImplementation "io.grpc:grpc-testing:${grpcVersion}"
     testImplementation "junit:junit:4.12"
 
     components {
@@ -64,15 +67,12 @@ dependencies {
             }
         }
     }
-
-    // Use JUnit test framework
-    testImplementation 'junit:junit:4.12'
 }
 
 protobuf {
-    protoc { artifact = "com.google.protobuf:protoc:3.9.1" }
+    protoc { artifact = "com.google.protobuf:protoc:${protocVersion}" }
     plugins {
-        grpc { artifact = "io.grpc:protoc-gen-grpc-java:1.23.0" }
+        grpc { artifact = "io.grpc:protoc-gen-grpc-java:${grpcVersion}" }
     }
     generateProtoTasks {
         all()*.plugins { grpc {} }
@@ -81,7 +81,12 @@ protobuf {
 
 application {
     // Define the main class for the application
-    mainClassName = 'alv.wallet.WalletApplication'
+    //mainClassName = 'alv.wallet.WalletApplication'
+    mainClassName = 'alv.wallet.client.App'
+}
+
+bootJar {
+   archiveName = 'wallet-client.jar'
 }
 
 sourceSets {

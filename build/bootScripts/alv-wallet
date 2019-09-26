@@ -64,7 +64,7 @@ case "`uname`" in
     ;;
 esac
 
-JARPATH=$APP_HOME/lib/alv-wallet.jar
+JARPATH=$APP_HOME/lib/wallet-client.jar
 
 # Determine the Java command to use to start the JVM.
 if [ -n "$JAVA_HOME" ] ; then

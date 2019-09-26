@@ -17,9 +17,9 @@ public enum CurrencyType
    */
   USD(1),
   /**
-   * <code>GPB = 2;</code>
+   * <code>GBP = 2;</code>
    */
-  GPB(2),
+  GBP(2),
   UNRECOGNIZED(-1),
   ;
 
@@ -32,9 +32,9 @@ public enum CurrencyType
    */
   public static final int USD_VALUE = 1;
   /**
-   * <code>GPB = 2;</code>
+   * <code>GBP = 2;</code>
    */
-  public static final int GPB_VALUE = 2;
+  public static final int GBP_VALUE = 2;
 
 
   public final int getNumber() {
@@ -57,7 +57,7 @@ public enum CurrencyType
     switch (value) {
       case 0: return EUR;
       case 1: return USD;
-      case 2: return GPB;
+      case 2: return GBP;
       default: return null;
     }
   }

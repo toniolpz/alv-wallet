@@ -62,7 +62,7 @@ public final class Wallet {
       " \003(\0132*.alv.wallet.BalanceResponse.Curren" +
       "cyAmount\0322\n\016CurrencyAmount\022\020\n\010currency\030\001" +
       " \001(\t\022\016\n\006amount\030\002 \001(\001\"\007\n\005Empty*)\n\014Currenc" +
-      "yType\022\007\n\003EUR\020\000\022\007\n\003USD\020\001\022\007\n\003GPB\020\0022\311\001\n\rWal" +
+      "yType\022\007\n\003EUR\020\000\022\007\n\003USD\020\001\022\007\n\003GBP\020\0022\311\001\n\rWal" +
       "letService\0228\n\007deposit\022\032.alv.wallet.Depos" +
       "itRequest\032\021.alv.wallet.Empty\022:\n\010withdraw" +
       "\022\033.alv.wallet.WithdrawRequest\032\021.alv.wall" +

@@ -13,6 +13,5 @@ bin
 # Ignore build folders
 build/classes
 build/distributions
-build/libs
 build/reports
 build/test-results
