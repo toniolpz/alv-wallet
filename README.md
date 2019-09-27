@@ -28,7 +28,7 @@ Set the parameters for users, threads and rounds while asked
 
 ## Important Choices
 ##### Simple database table
-I decided to leave with single Primary Key and without constraints in table, to bettwe handle it with Spring JPA/Hibernate.
+I decided to leave with single Primary Key and without constraints in table, to better handle it with Spring JPA/Hibernate.
 
 ##### Use JPARepository instead of DAOs
 Gets better performance with the built in handlers and methods for persistance than creating my own DAOs.
@@ -48,8 +48,13 @@ Set names and order for prioritize execution of the integration tests with jUnit
 
 Handle request that are expected to throw a Exception like said in the document.
 
+Integration test can be found under `src/test/java/alv/wallet/WalletApplicationTest.java` and are executed when the project is build:
+`.\gradlew build`
+
+The test results will be show in the console and the test report can be found under `build\reports\tests\test\index.html`.
+
 ##### Client
-The clien will just handle a max of 10000 rounds per execution to prevent outOfMemoryException.
+The client will just handle a max of 10000 rounds per execution to prevent outOfMemoryException.
 
 The Rounds are listed in an Executer class to can be selected and runnable randomly.
 
